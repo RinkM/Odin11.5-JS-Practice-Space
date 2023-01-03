@@ -1,0 +1,42 @@
+body{
+
+}
+
+#navTop{
+
+}
+#navLeft{
+
+}
+
+#mainContainer{
+
+}
+#imgCarousel{
+
+}
+.imgTitle{}
+
+.arrowBtn{
+
+}
+#prevArrow{
+
+}
+#nextArrow{
+
+}
+
+.imageContainer{
+  display: flex;
+
+}
+
+.image{
+  margin:0px 2px;
+  height:auto;
+  max-height: 180px;
+  width: auto;
+  max-width: 270px
+
+}
