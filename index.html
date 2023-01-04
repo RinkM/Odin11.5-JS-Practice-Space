@@ -17,39 +17,44 @@
   <nav id = "navTop" class = "navBar">
     TOP NAV
   </nav>
+  <div id = "bottomContainer">
   <nav id = "navLeft" class = navBar> 
     Left Nav
   </nav>
   <div id = "mainContainer"> 
     <div id = "imgCarousel">
-      <button class = "arrowBtn" id = "prevArrow">Back</button>
-      <button class = "arrowBtn" id = "nextArrow">Next</button>
 
+      
       <div id = "imgContainer" class = "imageContainer">
-        <div>
-          <div class = "imgTitle" id = "titleLeft"></div>
-          <img id = "prevImage" class ="image" >
+
+
+        <button class = "arrowBtn" id = "prevArrow">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div class = "imageCard" id = "leftCard">
+          <div id = "leftTitle" class = "imageTitle transition"></div>
+          <img id = "leftImage" class ="image transition">
         </div>  
         
-        <div>
-          <div class = "imgTitle" id = "titleCenter"></div>
-          <img id = "mainImage" class ="image" >
+        <div class = "imageCard" id = "middleCard">
+          <div id = "middleTitle" class = "imageTitle transition"></div>
+          <img id = "middleImage" class ="image transition" >
         </div>
 
-        <div>
-          <div class = "imgTitle" id = "titleRight"></div>
-          <img id = "nextImage" class ="image" >
+        <div class = "imageCard" id = "rightCard">
+          <div id = "rightTitle" class = "imageTitle transition"></div>
+          <img id = "rightImage" class ="image transition" >
         </div>
-
-        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-        <i class="fa fa-regular fa-chevron-circle-left" aria-hidden="true"></i>
-
-      </div>
-
-    </div>
-  </div>
+        <button class = "arrowBtn" id = "nextArrow">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
   
+      </div>
+      <div id = "dotsContainer"></div>
+    </div>
+    
+  </div>
+  </div>
 </body>
 <script src="script.js"></script>
-<script src ="imgDatabase.js" type = "module"> </script>
 </html>

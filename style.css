@@ -1,42 +1,179 @@
-body{
-
+#mainContainer{
+  height: 270px;
+min-height: 270px;
+max-height: 270px;
 }
+
 
 #navTop{
-
+  height:70px;
+  background-color: #6DCFF6;
 }
+
 #navLeft{
+  width: 70px;
+  background-color: cadetblue;
 
 }
-
-#mainContainer{
-
+#bottomContainer{
+  display: flex;
 }
+
 #imgCarousel{
-
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px red solid;
+  height: 280px;
+  min-height: 280px;
+  max-height: 280px;
 }
-.imgTitle{}
 
-.arrowBtn{
-
+.imageCard{
+  min-width: 270px;
+  max-width: 270px;
+  min-height: 2em;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }
-#prevArrow{
 
-}
-#nextArrow{
-
+.imageTitle{
+  display: flex;
+  min-height: 2em;
+  text-align: center;
+  text-justify: center;
+  margin:auto;
+  font-size: 1.5em;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 .imageContainer{
   display: flex;
+  justify-content: center;
 
+  height: 230px;
+  min-height: 230px;
+  max-height: 230px;
+  
 }
 
 .image{
-  margin:0px 2px;
+  margin:auto;
   height:auto;
-  max-height: 180px;
+  max-height: 170px;
   width: auto;
-  max-width: 270px
+  max-width: 260px;
+  border-radius: 6px;
 
 }
+
+.leftCard, .rightCard{
+  transition: all .5s ease-in-out 100ms;
+  transform: scale(.9, .8);
+  filter: blur(3px);
+}
+#leftCard{
+  position: relative;
+  left: 96px;
+}
+
+#rightCard{
+  position: relative;
+  right: 96px;
+}
+
+#middleCard{
+  z-index: 1;
+}
+
+.transitionLeft{
+  
+  transform: translateX(-175px);
+  transition: transform .5s ease-in;
+}
+.transitionRight{
+  transform: translateX(175px);
+  transition: transform .5s ease-out;
+}
+
+#dotsContainer{
+  background-color:#ffffff;
+  border: 1px solid black;
+  border-radius: 8px;
+  color:rgb(0, 0, 0);
+  filter: opacity(70%);
+  padding: 5px;
+  display: flex;
+  margin: 3px auto;
+}
+.dotButton{
+  margin: 2px;
+  background-color: transparent;
+  color: black;
+  border: 2pt solid black ;
+  border-radius: 10px;
+  cursor:pointer;
+}
+.dotButton:hover{
+  background-color: #6DCFF6;
+}
+
+.activeDotButton{
+  background-color: #6DCFF6;
+}
+
+.arrowBtn {
+  background-color: transparent;
+  opacity: 1;
+  color:white;
+  border: 2px solid #6dcff6;
+  /* box-sizing: border-box; */
+  font-family: "Avenir Next LT W01 Bold",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: auto;
+  padding: 10px 10px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.arrowBtn:hover,
+.arrowBtn:active {
+  background-color:#6dcff6;
+  opacity: 1;
+  transition: all .5s ;
+  cursor: pointer;
+}
+
+
+#prevArrow{
+  position: relative;
+left: 250px;
+z-index: 1;
+}
+#nextArrow{
+  position: relative;
+  right: 250px;
+  z-index: 1;
+
+}
+
+
+.arrowBtn:hover:before {
+  background-color: #6DCFF6;
+}
+
+@media (min-width: 768px) {
+  .arrowBtn {
+    /* padding: 16px 32px; */
+  }
+}
+
+.rightCardTitle, .leftCardTitle{
+  visibility:hidden}

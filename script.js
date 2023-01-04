@@ -1,6 +1,6 @@
 const pics = [ 
   {imgName:".\\images\\avacado-toast-ryan-quintal.jpg",
-  imgDescription: "Fresh avacado with sun ripened tomates!"  ,
+  imgDescription: "Fresh avacado with sun ripened tomatoes!"  ,
   altText: "Avacado Toast"
   },
   {imgName:".\\images\\bread - yeh-xintong-go.jpg",
@@ -59,43 +59,89 @@ const prevArrow = document.getElementById("prevArrow")
 const nextArrow = document.getElementById("nextArrow")
 
 
-{/* <img class ="image" src=".\images\avacado-toast-ryan-quintal.jpg"  */}
-let index = 1
+let count = 0
 
-const displayImage = ()=>{
-  let leftIndex = index-1
-  let rightIndex = index +1
+// makes the whole component. 
+const album = (count)=>{
+
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+{/* <i class="fa fa-circle" aria-hidden="true"></i> */}
+
+
+
+  // creates each individual card. replaces old text+imgs
+  const cardMaker = (imageInfo, cardDiv, cardId)=>{
+    let allImages = [...document.getElementById("imgContainer").children]
+
+    const titleDiv = document.createElement("div");
+    titleDiv.innerText= imageInfo.imgDescription;
+    titleDiv.classList.add("imageTitle");
+    titleDiv.classList.add("transition");
+    titleDiv.classList.add(cardId);
+    titleDiv.classList.add(cardId+"Title");
+
+    const imgDiv = document.createElement("img");
+    imgDiv.src = imageInfo.imgName;
+    imgDiv.setAttribute("alt",imageInfo.altText);
+    imgDiv.classList.add("image");
+    imgDiv.classList.add("transition");
     
-  const image = pics[index]
-  const leftImage = pics[leftIndex]
-  const rightImage = pics[ rightIndex]
-  const mainImage = document.getElementById('mainImage')
-  const prevImage = document.getElementById('prevImage')
-  const nextImage = document.getElementById('nextImage')
 
-  const titleLeft = document.getElementById('titleLeft')
-  const titleCenter = document.getElementById('titleCenter')
-  const titleRight = document.getElementById('titleRight')
-  
-  titleLeft.innerText= leftImage.imgDescription;
-  titleCenter.innerText= image.imgDescription;
-  titleRight.innerText = rightImage.imgDescription;
+    cardDiv.replaceChildren(titleDiv, imgDiv)
+    setTimeout(()=>{imgDiv.classList.add(cardId)}, 5)
+    
+    
+  }
+  // finds correct card within pics. passes information to cardMaker
+  const cardSelector = (count, cardId)=>{
+    let index = count
+    index = indexReset(index)
+    const image = pics[index]
+    const middleImage = document.getElementById(cardId)
+    cardMaker(image,middleImage, cardId)
+  }
 
-  mainImage.src = image.imgName;
-  mainImage.setAttribute("alt",image.altText);
-  mainImage.classList.add("singleImage");
-  
-  prevImage.src = leftImage.imgName;
-  prevImage.setAttribute("alt",leftImage.altText);
-  prevImage.classList.add("singleImage");
-  
-  nextImage.src = rightImage.imgName;
-  nextImage.setAttribute("alt",rightImage.altText);
-  nextImage.classList.add("singleImage");
+
+  cardSelector(count-1, "leftCard")
+  cardSelector(count, "middleCard")
+  cardSelector(count+1, "rightCard")
 }
 
-const indexReset = ()=>{
-  if (index > pics.length){
+const transitionRight = ()=>{
+  let cards = [...document.getElementsByClassName("transition")]
+  cards.forEach(element => {
+    element.classList.add("transitionRight");
+    element.classList.remove("leftCard");
+  }
+  )
+  
+}
+
+const transitionLeft = ()=>{
+  let cards = [...document.getElementsByClassName("transition")]
+  cards.forEach(element => {
+    
+    
+    element.classList.add("transitionLeft")
+    element.classList.remove("rightCard");
+  })
+}
+
+const removeTransition = ()=>{
+  let left = [...document.getElementsByClassName("transitionLeft")]
+  let right = [...document.getElementsByClassName("transitionRight")]
+  left.forEach(element => element.classList.remove("transitionLeft"))
+  right.forEach(element => element.classList.remove("transitionRight"))
+
+}
+
+// keeps the count / index within bounds of the array length. 
+const indexReset = (index)=>{
+  if (index > (pics.length-1)){
     index = 0
   } else if (index < 0){
     index = (pics.length-1)
@@ -104,19 +150,66 @@ const indexReset = ()=>{
 }
 
 
-displayImage()
+
+const dotIndex = (count)=>{
+  const dotsContainer = document.getElementById("dotsContainer");
+  
+
+  pics.forEach(element =>{
+    const button = document.createElement("button")
+    button.innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i>';
+    button.classList.add("dotButton");
+    button.addEventListener("click", function (e){
+      console.log([...dotsContainer.children])
+      const dotArray = [...dotsContainer.children]
+      dotArray.forEach(element => element.classList.remove("activeDotButton"))
+      this.classList.add("activeDotButton")
+      count = pics.indexOf(element)  
+      album(count)
+    }
+    )
+    dotsContainer.appendChild(button)
+  })
+  // button> Dot Icon /<button
+
+
+}
+
+
 
 prevArrow.addEventListener('click', ()=>{
-  index = index-1
-  indexReset()
-  displayImage()
+  
+  transitionRight()
+  console.log("theCount", count)
+  count = count-1
+  count = indexReset(count)
+  setTimeout(()=>{
+    // removeTransition()
+    album(count);
+    }, 601);
+  
 }
 )
+const nextFunction = ()=>{
+  transitionLeft()
+  count = count+1
+  count = indexReset(count)
+
+  setTimeout(()=>{
+    album(count);
+    // removeTransition()
+
+  }, 601);
+}
 
 nextArrow.addEventListener('click', ()=>{
-  index = index+1
-  indexReset()
-  displayImage()
+  nextFunction()  
+  
 }
 )
 
+
+// runs album for the first time.  starts the app. 
+album(count)
+dotIndex(count)
+// setInterval(()=>nextFunction(),5000)
