@@ -16,7 +16,7 @@ max-height: 270px;
   background-color: cadetblue;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: width 1s;
-  z-index: -1;
+  /* z-index: -1; */
 }
 #navLeft.collapse{
   width:0px;
