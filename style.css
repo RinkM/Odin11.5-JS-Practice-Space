@@ -11,7 +11,7 @@ max-height: 270px;
 }
 
 #navLeft{
-  width: 70px;
+  width: 100px;
   background-color: cadetblue;
 
 }
@@ -85,16 +85,16 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 #middleCard{
-  z-index: 1;
+  z-index: 2;
 }
 
 .transitionLeft{
   
-  transform: translateX(-175px);
+  transform: translateX(-172px);
   transition: transform .5s ease-in;
 }
 .transitionRight{
-  transform: translateX(175px);
+  transform: translateX(172px);
   transition: transform .5s ease-out;
 }
 
@@ -128,7 +128,7 @@ font-family: Arial, Helvetica, sans-serif;
   background-color: transparent;
   opacity: 1;
   color:white;
-  border: 2px solid #6dcff6;
+  border: 2px groove #6dcff6;
   /* box-sizing: border-box; */
   font-family: "Avenir Next LT W01 Bold",sans-serif;
   font-size: 16px;
@@ -141,6 +141,7 @@ font-family: Arial, Helvetica, sans-serif;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  z-index: 5;
 }
 
 .arrowBtn:hover,
@@ -177,3 +178,43 @@ z-index: 1;
 
 .rightCardTitle, .leftCardTitle{
   visibility:hidden}
+
+
+
+
+
+
+
+
+.hidden{
+  display: none;
+  
+}
+
+
+
+  /* menu styles */
+
+#menuContainerTop{
+  display: flex;
+
+}
+
+#menuContainerSide{
+
+}
+
+li{
+  list-style-type:none;
+}
+ul{
+  
+}
+
+#listContainerSide{
+
+}
+
+.menuItemPizza{
+
+}
