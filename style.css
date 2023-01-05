@@ -11,8 +11,16 @@ max-height: 270px;
 }
 
 #navLeft{
+  height:100vh;
   width: 100px;
   background-color: cadetblue;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: width 1s;
+  z-index: -1;
+}
+#navLeft.collapse{
+  width:0px;
+  /* overflow: none; */
 
 }
 #bottomContainer{
@@ -185,7 +193,6 @@ z-index: 1;
 
 
 
-
 .hidden{
   display: none;
   
@@ -205,16 +212,25 @@ z-index: 1;
 }
 
 li{
+  padding-left: 1rem;
   list-style-type:none;
+  color: white;
 }
 ul{
-  
+  transition: max-height .5s;
+  padding:0 0 0 5px;
+  background-color: maroon;
+  max-height:200px
+}
+
+ul.closed{
+max-height:21px;
+}
+
+.menuTitle{
+
 }
 
 #listContainerSide{
-
-}
-
-.menuItemPizza{
 
 }
