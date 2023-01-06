@@ -16,11 +16,10 @@ max-height: 270px;
   background-color: cadetblue;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: width 1s;
-  /* z-index: -1; */
 }
 #navLeft.collapse{
   width:0px;
-  /* overflow: none; */
+  overflow: hidden;
 
 }
 #bottomContainer{
@@ -208,19 +207,22 @@ z-index: 1;
 }
 
 #menuContainerSide{
-
+  width: inherit;
 }
 
 li{
   padding-left: 1rem;
   list-style-type:none;
   color: white;
+  width: inherit;
 }
 ul{
   transition: max-height .5s;
   padding:0 0 0 5px;
   background-color: maroon;
-  max-height:200px
+  max-height:200px;
+  
+
 }
 
 ul.closed{
@@ -228,9 +230,14 @@ max-height:21px;
 }
 
 .menuTitle{
-
+  cursor: pointer;
 }
 
 #listContainerSide{
 
+}
+
+
+#hamburger{
+  cursor: pointer;
 }

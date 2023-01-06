@@ -1,18 +1,18 @@
 const pics = [
   {
     imgName: ".\\images\\avacado-toast-ryan-quintal.jpg",
-    imgDescription: "Fresh avacado with sun ripened tomatoes!",
-    altText: "Avacado Toast",
+    imgDescription: "Fresh Avacado with Sun Ripened Tomatoes!",
+    altText: "Avocado Toast",
   },
   {
     imgName: ".\\images\\bread - yeh-xintong-go.jpg",
-    imgDescription: "Bread baked daily",
+    imgDescription: "Bread Baked Daily",
     altText: "Bread in a bakery",
   },
   {
     imgName: ".\\images\\coffee3-dumlao.jpg",
     imgDescription: "Hand crafted drinks",
-    altText: "Different coffee drinks",
+    altText: "Delicious Coffee Drinks",
   },
   {
     imgName: ".\\images\\coffee-milk-demi-deherrera - Copy.jpg",
@@ -31,12 +31,12 @@ const pics = [
   },
   {
     imgName: ".\\images\\french-toast-joseph-gonzalez.jpg",
-    imgDescription: "French Toast with fruit",
+    imgDescription: "French Toast with Fruit",
     altText: "French Toast",
   },
   {
     imgName: ".\\images\\interior-shawnanggg.jpg",
-    imgDescription: "Our restaurant",
+    imgDescription: "Our Restaurant",
     altText: "interior",
   },
   {
@@ -46,17 +46,17 @@ const pics = [
   },
   {
     imgName: ".\\images\\pancakes-brian-suman-.jpg",
-    imgDescription: "and more pancakes",
+    imgDescription: "...and Pancakes",
     altText: "Pancakes",
   },
   {
     imgName: ".\\images\\pancakes-portuguese-gravity.jpg",
-    imgDescription: "and MORE pancakes!",
+    imgDescription: "...and MORE Pancakes!",
     altText: "Pancakes",
   },
   {
     imgName: ".\\images\\ryan-beltz-j81ptH7PD7U-unsplash.jpg",
-    imgDescription: "Powdered Sugar blizzard",
+    imgDescription: "Powdered Sugar Blizzard",
     altText: "Sugar falling from heaven",
   },
   {
@@ -66,7 +66,36 @@ const pics = [
   },
 ];
 
+const navMenu = [
+  {
+    title: "Breakfast",
+    menuId: "menuBreakfast",
+    className: "menuItemBreakfast",
+    menuItems: ["Waffles", "Pancakes", "Pasteries", "Yogurt"],
+  },
+  {
+    title: "Lunch",
+    menuId: "menuLunch",
+    className: "menuItemLunch",
+    menuItems: ["Sandwich", "Salad", "Pizza"],
+  },
+  {
+    title: "Dinner",
+    menuId: "menuDinner",
+    className: "menuItemDinner",
+    menuItems: ["Steak", "Chicken", "Meatloaf", "Pasta", "Fish"],
+  },
+];
+
+
+
+// ? Table of Contents :
 imageSlidshow();
+menuMaker();
+navLeftHamburger()
+
+
+
 
 function imageSlidshow() {
   const imgCarousel = document.getElementById("imgCarousel");
@@ -131,13 +160,6 @@ function imageSlidshow() {
       element.classList.remove("rightCard");
     });
   };
-
-  // const removeTransition = ()=>{
-  //   let left = [...document.getElementsByClassName("transitionLeft")]
-  //   let right = [...document.getElementsByClassName("transitionRight")]
-  //   left.forEach(element => element.classList.remove("transitionLeft"))
-  //   right.forEach(element => element.classList.remove("transitionRight"))
-  // }
 
   // keeps the count / index within bounds of the array length. allows the pics to loop, not end.
   const indexReset = (index) => {
@@ -212,47 +234,16 @@ function imageSlidshow() {
   // setInterval(()=>nextFunction(),5000)
 }
 
-const navMenu = [
-  {
-    title: "Breakfast",
-    menuId: "menuBreakfast",
-    className: "menuItemBreakfast",
-    menuItems: ["Waffles", "Pancakes", "Pasteries", "Yogurt"],
-  },
-  {
-    title: "Lunch",
-    menuId: "menuLunch",
-    className: "menuItemLunch",
-    menuItems: ["Sandwich", "Salad", "Pizza"],
-  },
-  {
-    title: "Dinner",
-    menuId: "menuDinner",
-    className: "menuItemDinner",
-    menuItems: ["Steak", "Chicken", "Meatloaf", "Pasta", "Fish"],
-  },
-];
 
-// const expandMenu = (menuId, className) => {
-//   let menu = document.getElementById(menuId)
-//   let items = [...document.getElementsByClassName(className)]
-//   let allListItems = [...document.getElementsByTagName("li")]
-//   menu.addEventListener("click", ()=>{
-//     items.map((listItem)=>{
 
-//       listItem.classList.toggle("hidden")})
-//   })
-// }
 
-// expandMenu("menuSandwich","menuItemSandwich")
-// expandMenu("menuPizza","menuItemPizza")
 
-const menuMaker = () => {
+function menuMaker () {
+  // uses NavMenu objects to cretae the menus. Creates the UL, Span then the LI's.  Then adds button/click event listener to the spans. 
   navMenu.map((menu) => {
-    console.log(menu);
     let menuContainer = document.getElementById("menuContainerSide");
-    let menuTitle = document.createElement("ul");
 
+    let menuTitle = document.createElement("ul");
     menuTitle.setAttribute("id", "menuList" + menu.title);
     menuTitle.classList.add("listContainer");
     menuTitle.classList.add("closed");
@@ -261,6 +252,7 @@ const menuMaker = () => {
     menuSpan.setAttribute("id", "menuTitleSpan" + menu.title);
     menuSpan.classList.add("menuTitle");
     menuSpan.innerText = menu.title;
+
     menuTitle.appendChild(menuSpan);
 
     menu.menuItems.map((item) => {
@@ -286,13 +278,15 @@ const menuMaker = () => {
   });
 };
 
-menuMaker();
+function navLeftHamburger() {
+  const hamburger = document.getElementById("hamburger");
+  const navLeft = document.getElementById("navLeft");
+  const menuContainer = document.getElementById("menuContainerSide");
+
+  hamburger.addEventListener("click", () => {
+    navLeft.classList.toggle("collapse");
+    menuContainer.classList.toggle("collapse");
+  });
+}
 
 
-
-const hamburger = document.getElementById("hamburger")
-const navLeft = document.getElementById("navLeft")
-
-hamburger.addEventListener("click", ()=>{
-  navLeft.classList.toggle("collapse")
-})
