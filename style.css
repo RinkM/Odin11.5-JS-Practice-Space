@@ -1,13 +1,21 @@
 #mainContainer{
   height: 270px;
-min-height: 270px;
-max-height: 270px;
+  min-height: 270px;
+  max-height: 270px;
+  display: flex;
+  width:100%;
+  justify-content: space-evenly;
 }
 
 
 #navTop{
   height:70px;
   background-color: #6DCFF6;
+}
+#navTopText{
+  font-size: large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  ;
 }
 
 #navLeft{
@@ -35,6 +43,9 @@ max-height: 270px;
   height: 280px;
   min-height: 280px;
   max-height: 280px;
+
+  background: rgb(249,203,160);
+  background: linear-gradient(135deg, rgba(249,203,160,1) 0%, rgba(245,247,195,1) 80%);
 }
 
 .imageCard{
@@ -141,7 +152,7 @@ font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-  margin: auto;
+  margin: auto 0;
   padding: 10px 10px;
   position: relative;
   text-decoration: none;
@@ -241,3 +252,90 @@ max-height:21px;
 #hamburger{
   cursor: pointer;
 }
+
+#slideShow--container{
+  
+
+}
+
+#sildeShow--viewer {
+  border:2pt black solid;
+  max-width: 340px;
+  /* max-height: 390px; */
+  overflow-x: hidden;
+  background: rgb(2,0,36);
+  background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(5,1,74,1) 22%);
+  position: relative;
+
+}
+
+#slideShow--BtnContainer{
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  top:40%
+  
+
+}
+
+#slideShow--images{
+  transition: transform 1s ease-out;
+  display:flex;
+  padding: 0 10px;
+
+}
+
+.slideShow--image{
+  margin:auto 15px;
+  height:auto;
+  /* max-height: 300px; */
+  width: auto;
+  max-width: 260px;
+
+}
+
+#slideShow--navDots{
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navDots{
+  margin: 3px;
+  background-color: transparent;
+  color: white;
+  border: 2pt solid white ;
+  border-radius: 10px;
+  cursor:pointer;
+
+}
+
+.navDots:hover{
+  background-color: #6DCFF6;
+  border: 2pt solid white ;
+}
+
+.navDots.activeDotButton{
+  background-color: #6DCFF6;
+}
+
+
+#slideShow--text{
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:auto;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+/* SlideShow */
+
+

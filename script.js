@@ -4,6 +4,11 @@ const pics = [
     imgDescription: "Fresh Avacado with Sun Ripened Tomatoes!",
     altText: "Avocado Toast",
   },
+  // {
+  //   imgName: ".\\images\\ryan-beltz-j81ptH7PD7U-unsplash.jpg",
+  //   imgDescription: "Powdered Sugar Blizzard",
+  //   altText: "Sugar falling from heaven",
+  // },
   {
     imgName: ".\\images\\bread - yeh-xintong-go.jpg",
     imgDescription: "Bread Baked Daily",
@@ -29,11 +34,11 @@ const pics = [
     imgDescription: "Eggs from happy chickens",
     altText: "Carton of Eggs",
   },
-  {
-    imgName: ".\\images\\french-toast-joseph-gonzalez.jpg",
-    imgDescription: "French Toast with Fruit",
-    altText: "French Toast",
-  },
+  // {
+  //   imgName: ".\\images\\french-toast-joseph-gonzalez.jpg",
+  //   imgDescription: "French Toast with Fruit",
+  //   altText: "French Toast",
+  // },
   {
     imgName: ".\\images\\interior-shawnanggg.jpg",
     imgDescription: "Our Restaurant",
@@ -44,20 +49,15 @@ const pics = [
     imgDescription: "Pancakes",
     altText: "Pancakes",
   },
-  {
-    imgName: ".\\images\\pancakes-brian-suman-.jpg",
-    imgDescription: "...and Pancakes",
-    altText: "Pancakes",
-  },
+  // {
+  //   imgName: ".\\images\\pancakes-brian-suman-.jpg",
+  //   imgDescription: "...and Pancakes",
+  //   altText: "Pancakes",
+  // },
   {
     imgName: ".\\images\\pancakes-portuguese-gravity.jpg",
     imgDescription: "...and MORE Pancakes!",
     altText: "Pancakes",
-  },
-  {
-    imgName: ".\\images\\ryan-beltz-j81ptH7PD7U-unsplash.jpg",
-    imgDescription: "Powdered Sugar Blizzard",
-    altText: "Sugar falling from heaven",
   },
   {
     imgName: ".\\images\\wright-brand-bacon-VVtVBLKkrik-unsplash.jpg",
@@ -108,7 +108,7 @@ function imageSlidshow() {
 
   // makes the whole component.
   const album = () => {
-    console.log("thealbumcount", count);
+    // console.log("thealbumcount", count);
 
     // creates the title and image in DOM. replaces old text+imgs
     const cardMaker = (imageInfo, cardDiv, cardId) => {
@@ -268,7 +268,7 @@ function menuMaker () {
     menuContainer.appendChild(menuTitle);
 
     let items = [...document.getElementsByClassName("listItem" + menu.title)];
-    console.log(items);
+    // console.log(items);
     menuSpan.addEventListener("click", () => {
       menuTitle.classList.toggle("closed");
       items.map((listItem) => {
@@ -290,3 +290,124 @@ function navLeftHamburger() {
 }
 
 
+
+
+
+
+
+
+
+
+
+// ? slideShow functions. 
+
+slideShow()
+function slideShow(){
+
+const fullContainer = document.getElementById("slideShow-container")
+const images = document.getElementById("slideShow--images")
+const viewer = document.getElementById("slideShow--viewer")
+const navDots = document.getElementById("slideShow--NavDots")
+const text = document.getElementById("slideShow--text")
+const backButton = document.getElementById("backButton")
+const forwardButton = document.getElementById("forwardButton")
+
+let xScale = 0
+
+// ? Could I do this as a list? Would that change anything?
+
+const pictureLayout = ()=>{
+  pics.map((photo)=>{
+    const index = pics.indexOf(photo)
+    const singleImage = document.createElement("img");
+    singleImage.setAttribute("id", "image"+index)
+    singleImage.classList.add("slideShow--image")
+    singleImage.src = photo.imgName;
+    singleImage.setAttribute("alt", photo.altText);
+
+
+    images.appendChild(singleImage)
+
+  }
+  )
+}
+pictureLayout()
+displayText()
+
+
+
+backButton.addEventListener("click", ()=>{
+  console.log(xScale)
+  if (xScale < 0){
+    xScale = xScale + 290;
+    images.style.transform = `translateX(${xScale}px)`;
+    displayText()
+  }
+  })
+
+forwardButton.addEventListener("click", ()=>{
+  console.log(-290 * pics.length)
+  console.log(xScale)
+  if (xScale > -290 * (pics.length-1)){
+    xScale = xScale - 290;
+    images.style.transform = `translateX(${xScale}px)`;
+    displayText()
+  }
+  
+})
+
+
+
+
+const highlightDots = () => {
+  const activeIndex = (-xScale/290)
+  const navDots = document.getElementById("slideShow--navDots");
+  console.log("slideDot" + activeIndex)
+  const activeDot = document.getElementById("slideDot" + activeIndex);
+  const dotArray = [...navDots.children];
+  console.log(dotArray)
+  dotArray.forEach((element) => element.classList.remove("activeDotButton"));
+  activeDot.classList.add("activeDotButton");
+};
+
+const createNavDots = () => {
+  const navDots = document.getElementById("slideShow--navDots");
+
+  pics.forEach((element) => {
+    const button = document.createElement("button");
+    button.innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i>';
+    button.classList.add("navDots");
+    button.setAttribute("id", "slideDot" + pics.indexOf(element));
+    button.addEventListener("click", function (e) {
+      const dotArray = [...dotsContainer.children];
+      dotArray.forEach((element) =>
+        element.classList.remove("activeDotButton")
+      );
+      this.classList.add("activeDotButton");
+      xScale = pics.indexOf(element)*(-290);
+      images.style.transform = `translateX(${xScale}px)`;
+      highlightDots()
+      displayText()
+    });
+    navDots.appendChild(button);
+    
+
+  });
+  // button> Dot Icon /<button
+};
+
+function displayText () {
+  const activeIndex = (-xScale/290);
+  console.log(activeIndex)
+  text.innerText =""
+  text.innerText = pics[activeIndex].imgDescription
+}
+
+
+
+
+
+createNavDots()
+
+
+}
